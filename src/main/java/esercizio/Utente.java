@@ -6,8 +6,10 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -24,18 +26,18 @@ public class Utente {
 		protected String cognome;
 		protected LocalDate dataNascita;
 		@Id
-		@GeneratedValue
+		@SequenceGenerator(name = "sequence2", sequenceName = "sequence2", allocationSize = 1)
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence2")
 		@Column(name = "n_Tessera")
-		protected Long nTessera;
+		protected int nTessera;
 
 		@OneToMany(mappedBy = "utente")
 		private Set<Prestito> prestito;
 
-		public Utente(String nome, String cognome, LocalDate dataNascita, Long nTessera) {
+		public Utente(String nome, String cognome, LocalDate dataNascita) {
 			this.nome = nome;
 			this.cognome = cognome;
 			this.dataNascita = dataNascita;
-			this.nTessera = nTessera;
 		}
 
 		@Override

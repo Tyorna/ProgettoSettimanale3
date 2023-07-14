@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -29,6 +31,9 @@ public abstract class Catalogo {
 	protected LocalDate annopubbl;
 	protected int numeroPagine;
 
+	@ManyToOne
+	@JoinColumn(name = "prestito", referencedColumnName = "id", nullable = false)
+	private Prestito prestito;
 
 	public Catalogo(int ISBN, String title, LocalDate annoPubbl, int numeroPagine) {
 		this.ISBN = ISBN;

@@ -1,7 +1,11 @@
 package DAO;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import esercizio.Prestito;
 
@@ -20,27 +24,21 @@ public class PrestitoDAO {
 		System.out.println("Prestito salvato!");
 	}
 
-	public Prestito findByIdPrestito(long id) {
-		Prestito trova = em.find(Prestito.class, id);
-		if (trova != null) {
-			return trova;
-		} else {
-			System.out.println("Prestito non trovato");
-		}
-		return trova;
+	public List<Prestito> findPrestitoTessera(int nTessera) {
+		TypedQuery<Prestito> query = em.createQuery(
+				"SELECT a FROM Prestito a WHERE utente_n_tessera = :numeroTessera", Prestito.class);
+		query.setParameter("numeroTessera", nTessera);
+		return query.getResultList();
 	}
 
-	public void deletePrestito(long id) {
-		Prestito trova = em.find(Prestito.class, id);
-		if (trova != null) {
-			EntityTransaction t = em.getTransaction();
-			t.begin();
-			em.remove(trova);
-			t.commit();
-			System.out.println("Prestito eliminato");
-		} else {
-			System.out.println("Prestito non trovato");
-		}
+	// METODO CERCA PRESTITI SCADUTI
+	public List<Prestito> findPrestitoScaduti() {
+		LocalDate today = LocalDate.now();
+		TypedQuery<Prestito> query = em.createQuery(
+				"SELECT a FROM Prestito a WHERE datarestituzione < :today AND datarestituzionerffettiva IS NULL",
+				Prestito.class);
+		query.setParameter("today", today);
+		return query.getResultList();
 	}
 
 	public void refreshPrestito(long id) {
