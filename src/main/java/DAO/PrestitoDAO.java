@@ -35,7 +35,7 @@ public class PrestitoDAO {
 	public List<Prestito> findPrestitoScaduti() {
 		LocalDate today = LocalDate.now();
 		TypedQuery<Prestito> query = em.createQuery(
-				"SELECT a FROM Prestito a WHERE datarestituzione < :today AND datarestituzionerffettiva IS NULL",
+				"SELECT b FROM Prestito b WHERE dataRestituzione < :today AND dataRestituzioneEffettiva IS NULL",
 				Prestito.class);
 		query.setParameter("today", today);
 		return query.getResultList();
