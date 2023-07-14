@@ -18,11 +18,11 @@ public class RivisteDAO {
 		t.begin();
 		em.persist(e);
 		t.commit();
-		System.out.println("Salvata!");
+		System.out.println("Rivista salvata!");
 	}
 
-	public Riviste findById(long id) {
-		Riviste trova = em.find(Riviste.class, id);
+	public Riviste findByIdRivista(int ISBN) {
+		Riviste trova = em.find(Riviste.class, ISBN);
 		if (trova != null) {
 			return trova;
 		} else {
@@ -31,8 +31,8 @@ public class RivisteDAO {
 		return trova;
 	}
 
-	public void delete(long id) {
-		Riviste trova = em.find(Riviste.class, id);
+	public void deleteRivista(int ISBN) {
+		Riviste trova = em.find(Riviste.class, ISBN);
 		if (trova != null) {
 			EntityTransaction t = em.getTransaction();
 			t.begin();
@@ -44,8 +44,8 @@ public class RivisteDAO {
 		}
 	}
 
-	public void refresh(long id) {
-		Riviste trova = em.find(Riviste.class, id);
+	public void refreshRivista(int ISBN) {
+		Riviste trova = em.find(Riviste.class, ISBN);
 		em.refresh(trova);
 		System.out.println("REFRESh effetturato");
 		System.out.println(trova);

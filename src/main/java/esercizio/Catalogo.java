@@ -1,5 +1,7 @@
 package esercizio;
 
+import java.time.LocalDate;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,16 +24,16 @@ import lombok.Setter;
 public abstract class Catalogo {
 
 	@Id
-	protected String ISBN;
+	protected int ISBN;
 	protected String title;
-	protected int annoPubbl;
+	protected LocalDate annopubbl;
 	protected int numeroPagine;
 
 
-	public Catalogo(String ISBN, String title, int annoPubbl, int numeroPagine) {
+	public Catalogo(int ISBN, String title, LocalDate annoPubbl, int numeroPagine) {
 		this.ISBN = ISBN;
 		this.title = title;
-		this.annoPubbl = annoPubbl;
+		this.annopubbl = annoPubbl;
 		this.numeroPagine = numeroPagine;
 	}
 }

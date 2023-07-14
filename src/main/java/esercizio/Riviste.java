@@ -1,5 +1,7 @@
 package esercizio;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,7 +21,7 @@ public class Riviste extends Catalogo {
 	@Enumerated(EnumType.STRING)
 	protected Type periodicita;
 
-	public Riviste(String title, Type periodicita, String ISBN, int annoPubbl, int numeroPagine) {
+	public Riviste(String title, Type periodicita, int ISBN, LocalDate annoPubbl, int numeroPagine) {
 		super(ISBN, title, annoPubbl, numeroPagine);
 		this.periodicita = periodicita;
 	}
@@ -27,7 +29,7 @@ public class Riviste extends Catalogo {
 	@Override
 	public String toString() {
 		return "Riviste [ISBN=" + ISBN + ", title=" + title + ", periodicita=" + periodicita + ", annoPubbl="
-				+ annoPubbl
+				+ annopubbl
 				+ ", numeroPagine=" + numeroPagine + "]" + "\n";
 	}
 }

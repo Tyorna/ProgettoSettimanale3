@@ -1,5 +1,7 @@
 package esercizio;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -17,7 +19,7 @@ public class Libri extends Catalogo {
 	protected String autore;
 	protected String genere;
 
-	public Libri(String title, String autore, String genere, String ISBN, int annoPubbl, int numeroPagine) {
+	public Libri(String title, String autore, String genere, int ISBN, LocalDate annoPubbl, int numeroPagine) {
 		super(ISBN, title, annoPubbl, numeroPagine);
 		this.autore = autore;
 		this.genere = genere;
@@ -26,6 +28,6 @@ public class Libri extends Catalogo {
 	@Override
 	public String toString() {
 		return "Libro [ISBN=" + ISBN + ", title=" + title + ", autore=" + autore + ", genere=" + genere + ", annoPubbl="
-				+ annoPubbl + ", numeroPagine=" + numeroPagine + "]" + "\n";
+				+ annopubbl + ", numeroPagine=" + numeroPagine + "]" + "\n";
 	}
 }

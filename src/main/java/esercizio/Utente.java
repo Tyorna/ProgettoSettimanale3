@@ -1,10 +1,13 @@
 package esercizio;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -22,7 +25,11 @@ public class Utente {
 		protected LocalDate dataNascita;
 		@Id
 		@GeneratedValue
+		@Column(name = "n_Tessera")
 		protected Long nTessera;
+
+		@OneToMany(mappedBy = "utente")
+		private Set<Prestito> prestito;
 
 		public Utente(String nome, String cognome, LocalDate dataNascita, Long nTessera) {
 			this.nome = nome;
